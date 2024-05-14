@@ -5,6 +5,8 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Button from "./components/ui/Button";
 import Inputs from "./components/ui/Inputs";
 import { Iproduct } from "./assets/interfaces";
+import { productValidation } from "./validation";
+import ErrorMsg from "./components/ErrorMsg";
 
 function App() {
 	const defaultProductValue = {
@@ -21,6 +23,12 @@ function App() {
 	// state
 	const [product, setProduct] = useState<Iproduct>(defaultProductValue);
 	const [isOpen, setIsOpen] = useState(false);
+	const [errors, setErrors] = useState({
+		title: "",
+		description: "",
+		imageURL: "",
+		price: "",
+	});
 	// handler
 	const open = () => {
 		setIsOpen(true);
@@ -34,9 +42,27 @@ function App() {
 			...product,
 			[name]: value,
 		});
+		setErrors({
+			...errors,
+			[name]: "",
+		});
 	};
 	const submitHandler = (e: FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
+		const { title, description, imageURL, price } = product;
+		const errors = productValidation({
+			title,
+			description,
+			imageURL,
+			price,
+		});
+		const hasError =
+			Object.values(errors).some((value) => value === "") &&
+			Object.values(errors).every((value) => value === "");
+		if (!hasError) {
+			setErrors(errors);
+			return;
+		}
 
 		// throw new Error("function not impemented");
 	};
@@ -64,6 +90,7 @@ function App() {
 				value={product[input.name]}
 				onChange={changeHandler}
 			/>
+			<ErrorMsg msg={errors[input.name]} />
 		</div>
 	));
 	return (

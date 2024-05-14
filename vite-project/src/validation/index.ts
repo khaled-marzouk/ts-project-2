@@ -19,6 +19,8 @@ export const productValidation = (product: {
 	if (!product.imageURL.trim() || !validurl) {
 		errors.imageURL = "please enter valid image url"
 	}
-	if(!product.price.trim()|| product.price)
+	if (!product.price.trim() || isNaN(Number(product.price)) || !Number.isInteger(Number(product.price)) || !/^\d+$/.test(product.price)) {
+		errors.price = "please enter a number "
+	}
 	return errors
 };
