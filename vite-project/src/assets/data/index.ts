@@ -137,7 +137,7 @@ export const formInputsList: Iinputs[] = [
 	},
 	{
 		id: "image",
-		name: "iamgeURL",
+		name: "imageURL",
 		label: "Product imageURL",
 		type: "text",
 	},
