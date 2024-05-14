@@ -6,7 +6,7 @@ export const productList: Iproduct[] = [
 	{
 		id: uuid(),
 		title: "2022 Genesis GV70: Nomine",
-		description: "Lorem ipsum dolor sit . Impedit, qui?",
+		description: "Lorem ipsum dolor sit . Impedit, qui,jgfsdh,fsffs?",
 		imageURL:
 			"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7MuAdP4hN5gAnEYyQi4DkhobtNhAXoRZbJFOGXDGeK9hk20EuBqdxa9yZXWxcmytG6YJaQDIOUp69gj9iSywQI86va6BsyR7MGx_lOgA1QYF9QgnZALAxAcsSdugcJ5P-B1mVf7ka5EQp/s1600/SAM_3390.JPG",
 		price: "500000",
@@ -38,6 +38,21 @@ export const productList: Iproduct[] = [
 		description:
 			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, qui?",
 		imageURL:
+			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMJas7rcy49J4vNzqBGL3551UhGpD5RTmnrAhsUVxTwQ&s",
+		price: "500000",
+		color: ["#ff0032", "#2563eb", "#ff6e31"],
+		category: {
+			name: "laptop",
+			iamgeURL:
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMJas7rcy49J4vNzqBGL3551UhGpD5RTmnrAhsUVxTwQ&s",
+		},
+	},
+	{
+		id: uuid(),
+		title: "2022 Genesis GV70: Nomine",
+		description:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, qui?",
+		imageURL:
 			"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7MuAdP4hN5gAnEYyQi4DkhobtNhAXoRZbJFOGXDGeK9hk20EuBqdxa9yZXWxcmytG6YJaQDIOUp69gj9iSywQI86va6BsyR7MGx_lOgA1QYF9QgnZALAxAcsSdugcJ5P-B1mVf7ka5EQp/s1600/SAM_3390.JPG",
 		price: "500000",
 		color: ["#ff0032", "#2563eb", "#ff6e31"],
@@ -60,6 +75,50 @@ export const productList: Iproduct[] = [
 			name: "Cars",
 			iamgeURL:
 				"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7MuAdP4hN5gAnEYyQi4DkhobtNhAXoRZbJFOGXDGeK9hk20EuBqdxa9yZXWxcmytG6YJaQDIOUp69gj9iSywQI86va6BsyR7MGx_lOgA1QYF9QgnZALAxAcsSdugcJ5P-B1mVf7ka5EQp/s1600/SAM_3390.JPG",
+		},
+	},
+	{
+		id: uuid(),
+		title: "2022 Genesis GV70: Nomine",
+		description:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, qui?",
+		imageURL:
+			"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7MuAdP4hN5gAnEYyQi4DkhobtNhAXoRZbJFOGXDGeK9hk20EuBqdxa9yZXWxcmytG6YJaQDIOUp69gj9iSywQI86va6BsyR7MGx_lOgA1QYF9QgnZALAxAcsSdugcJ5P-B1mVf7ka5EQp/s1600/SAM_3390.JPG",
+		price: "500000",
+		color: ["#ff0032", "#2563eb", "#ff6e31"],
+		category: {
+			name: "Cars",
+			iamgeURL:
+				"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7MuAdP4hN5gAnEYyQi4DkhobtNhAXoRZbJFOGXDGeK9hk20EuBqdxa9yZXWxcmytG6YJaQDIOUp69gj9iSywQI86va6BsyR7MGx_lOgA1QYF9QgnZALAxAcsSdugcJ5P-B1mVf7ka5EQp/s1600/SAM_3390.JPG",
+		},
+	},
+	{
+		id: uuid(),
+		title: "2022 Genesis GV70: Nomine",
+		description:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, qui?",
+		imageURL: "https://www.generatormix.com/images/thumbs/random-clothing.jpg",
+		price: "500000",
+		color: ["#ff0032", "#2563eb", "#ff6e31"],
+		category: {
+			name: "cloth",
+			iamgeURL:
+				"https://www.generatormix.com/images/thumbs/random-clothing.jpg",
+		},
+	},
+	{
+		id: uuid(),
+		title: "2022 Genesis GV70: Nomine",
+		description:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, qui?",
+		imageURL:
+			"https://s0.as-img.com/r/drawing/585335/1500/1500/with_msg.jpg?bg=f5f5f5&u=1624398248",
+		price: "500000",
+		color: ["#ff0032", "#2563eb", "#ff6e31"],
+		category: {
+			name: "shoes",
+			iamgeURL:
+				"https://s0.as-img.com/r/drawing/585335/1500/1500/with_msg.jpg?bg=f5f5f5&u=1624398248",
 		},
 	},
 ];
