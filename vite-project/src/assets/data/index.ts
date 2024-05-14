@@ -1,6 +1,6 @@
 // import { v4 as uuid } from "uuid";
 import uuid from "react-uuid";
-import { Iproduct } from "../interfaces";
+import { Iinputs, Iproduct } from "../interfaces";
 
 export const productList: Iproduct[] = [
 	{
@@ -120,5 +120,31 @@ export const productList: Iproduct[] = [
 			iamgeURL:
 				"https://s0.as-img.com/r/drawing/585335/1500/1500/with_msg.jpg?bg=f5f5f5&u=1624398248",
 		},
+	},
+];
+export const formInputsList: Iinputs[] = [
+	{
+		id: "title",
+		name: "title",
+		label: "Product Title",
+		type: "text",
+	},
+	{
+		id: "description",
+		name: "description",
+		label: "Product Description",
+		type: "text",
+	},
+	{
+		id: "image",
+		name: "iamgeURL",
+		label: "Product imageURL",
+		type: "text",
+	},
+	{
+		id: "price",
+		name: "price",
+		label: "Product Price",
+		type: "text",
 	},
 ];

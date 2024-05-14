@@ -10,3 +10,9 @@ export interface Iproduct {
 		iamgeURL: string;
 	};
 }
+export interface Iinputs {
+	id: string;
+	name: string;
+	label: string;
+	type: string;
+}

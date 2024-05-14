@@ -1,12 +1,11 @@
 import {
-	Button,
 	Dialog,
 	DialogPanel,
 	DialogTitle,
 	Transition,
 	TransitionChild,
 } from "@headlessui/react";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
 interface Iprops {
 	isOpen: boolean;
