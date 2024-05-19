@@ -1,26 +1,31 @@
 import ProductCards from "./components/ProductCards";
-import { formInputsList, productList } from "./assets/data";
+import { colors, formInputsList, productList } from "./assets/data";
 import Modal from "./components/ui/Modal";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { KeyboardEventHandler, ChangeEvent, FormEvent, useState } from "react";
 import Button from "./components/ui/Button";
 import Inputs from "./components/ui/Inputs";
 import { Iproduct } from "./assets/interfaces";
 import { productValidation } from "./validation";
 import ErrorMsg from "./components/ErrorMsg";
+import CircleColor from "./components/CircleColor";
+import uuid from "react-uuid";
 
 function App() {
-	const defaultProductValue = {
+	const defaultProductValue: Iproduct = {
 		title: "",
 		description: "",
 		imageURL: "",
 		price: "",
-		color: [],
+		colors: [],
 		category: {
 			name: "",
-			iamgeURL: "",
+			imageURL: "",
 		},
 	};
 	// state
+	const [products, setProducts] = useState<Iproduct[]>(productList);
+	const [tempColor, setTempColor] = useState<string[]>([]);
+	console.log(tempColor);
 	const [product, setProduct] = useState<Iproduct>(defaultProductValue);
 	const [isOpen, setIsOpen] = useState(false);
 	const [errors, setErrors] = useState({
@@ -29,6 +34,8 @@ function App() {
 		imageURL: "",
 		price: "",
 	});
+	// #################################################################################
+
 	// handler
 	const open = () => {
 		setIsOpen(true);
@@ -47,6 +54,20 @@ function App() {
 			[name]: "",
 		});
 	};
+
+	const keyUpHandler: KeyboardEventHandler<HTMLInputElement> = (e) => {
+		const { name, value } = e.currentTarget;
+		const fieldError = productValidation({
+			...product,
+			[name]: value,
+		})[name as keyof typeof errors];
+
+		setErrors((prevErrors) => ({
+			...prevErrors,
+			[name]: fieldError,
+		}));
+	};
+	// ###################################################
 	const submitHandler = (e: FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
 		const { title, description, imageURL, price } = product;
@@ -63,18 +84,35 @@ function App() {
 			setErrors(errors);
 			return;
 		}
-
-		// throw new Error("function not impemented");
-	};
-	const onCancel = () => {
-		setIsOpen(false);
+		setProducts((prev) => [
+			...prev,
+			{ ...product, id: uuid(), colors: tempColor },
+		]);
 		setProduct(defaultProductValue);
+		setTempColor([]);
+		close();
 	};
-
+	// ##################################################################
+	const onCancel = () => {
+		close();
+		setProduct(defaultProductValue);
+		// resetForm();
+	};
+	// const resetForm = () => {
+	// 	setProduct(defaultProductValue);
+	// 	setErrors({
+	// 		title: "",
+	// 		description: "",
+	// 		imageURL: "",
+	// 		price: "",
+	// 	});
+	// };
+	//####################################################################
 	// render
-	const renderProductList = productList.map((product) => (
+	const renderProductList = products.map((product) => (
 		<ProductCards key={product.id} product={product} />
 	));
+	//####################################################################
 	const renderIputs = formInputsList.map((input) => (
 		<div className="flex flex-col" key={input.id}>
 			<label
@@ -89,10 +127,26 @@ function App() {
 				id={input.id}
 				value={product[input.name]}
 				onChange={changeHandler}
+				onKeyUp={keyUpHandler}
 			/>
-			<ErrorMsg msg={errors[input.name]} />
+			<ErrorMsg msg={errors[input.name as keyof typeof errors]} />
 		</div>
 	));
+	//####################################################################
+	const renderColors = colors.map((color) => (
+		<CircleColor
+			key={color}
+			color={color}
+			onClick={() => {
+				if (tempColor.includes(color)) {
+					setTempColor((prev) => prev.filter((item) => item !== color));
+					return;
+				}
+				setTempColor((prev) => [...prev, color]);
+			}}
+		/>
+	));
+	//####################################################################
 	return (
 		<main className="container">
 			<Button onClick={open} className="bg-indigo-700 hover:bg-indigo-800">
@@ -106,6 +160,20 @@ function App() {
 			<Modal isOpen={isOpen} close={close} title="Add new product">
 				<form onSubmit={submitHandler} className="space-y-3">
 					{renderIputs}
+					<div className="flex items-center space-x-1 flex-wrap ">
+						{renderColors}
+					</div>
+					<div className="flex items-center space-x-1 flex-wrap ">
+						{tempColor.map((color) => (
+							<span
+								className="p-1 mr-1 mb-1 text-xs rounded-md text-white"
+								style={{ backgroundColor: color }}
+								key={color}
+							>
+								{color}
+							</span>
+						))}
+					</div>
 
 					<div className="flex items-center space-x-3">
 						<Button className=" bg-gray-400 hover:bg-gray-500"> submit</Button>

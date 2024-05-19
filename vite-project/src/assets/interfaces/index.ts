@@ -4,10 +4,10 @@ export interface Iproduct {
 	description: string;
 	imageURL: string;
 	price: string;
-	color: string[];
+	colors: string[];
 	category: {
 		name: string;
-		iamgeURL: string;
+		imageURL: string;
 	};
 }
 export interface Iinputs {

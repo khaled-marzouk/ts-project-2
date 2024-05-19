@@ -2,35 +2,38 @@ import Image from "./Image";
 import { Iproduct } from "../assets/interfaces";
 import Button from "./ui/Button";
 import { textSlicer } from "../assets/utils/functions";
+import CircleColor from "./CircleColor";
 
 interface Iprops {
 	product: Iproduct;
 }
 
 const ProductCards = ({ product }: Iprops) => {
+	const { title, description, imageURL, colors, price, category } = product;
+	const renderColors = colors.map((color) => (
+		<CircleColor key={color} color={color} />
+	));
+
 	return (
 		<div className="border border-md p-2 flex flex-col max-w-sm md:max-w-lg mx-auto md:mx-0 space-y-3">
 			<Image
-				imageURL={product.imageURL}
+				imageURL={imageURL}
 				alt={"product-name"}
 				className="rounded-md mb-2 h-52 lg:object-cover w-full"
 			/>
-			<h3 className="text-lg font-semibold">{product.title}</h3>
+			<h3 className="text-lg font-semibold">{title}</h3>
 			<p className="text-xs text-gray-500 break-words">
-				{textSlicer(product.description)}
+				{textSlicer(description)}
 			</p>
-			<div className="flex items-center space-x-2 my-4">
-				<span className="w-5 h-5 rounded-full bg-red-500 cursor-pointer"></span>
-				<span className="w-5 h-5 rounded-full bg-red-500 cursor-pointer"></span>
-				<span className="w-5 h-5 rounded-full bg-red-500 cursor-pointer"></span>
+			<div className="flex items-center space-x-1 flex-wrap ">
+				{renderColors}
 			</div>
+
 			<div className="flex justify-between items-center">
-				<span className="text-lg text-indigo-600 font-semibold">
-					{product.price}
-				</span>
+				<span className="text-lg text-indigo-600 font-semibold">{price}</span>
 				<Image
-					imageURL={product.category.iamgeURL}
-					alt={product.category.name}
+					imageURL={product.category.imageURL}
+					alt={category.name}
 					className="w-10 h-10 rounded-full object-bottom"
 				/>
 			</div>
