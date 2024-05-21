@@ -1,6 +1,6 @@
 // import { v4 as uuid } from "uuid";
 import uuid from "react-uuid";
-import { Iinputs, Iproduct } from "../interfaces";
+import { ICategory, Iinputs, Iproduct } from "../interfaces";
 
 export const productList: Iproduct[] = [
 	{
@@ -162,4 +162,28 @@ export const colors: string[] = [
 	"#795548",
 	"#607d8b",
 	"#ff5722"
+]
+
+export const Categories: ICategory[] = [
+	{
+		id: uuid(),
+		name: "NIKE",
+		imageURL: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/9b26aa8f-0173-409b-b30a-7ce2d88573a4/custom-nike-dunk-low-by-you.png",
+	},
+	{
+		id: uuid(),
+		name: "T-Shirt",
+		imageURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNyt8UhGh2JkDbm5YqLGfH1opqW2SFyemmGVxXYKZeiA&s",
+	},
+	{
+		id: uuid(),
+		name: "Clothes",
+		imageURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtgTI7ruC9mD6pRcv9IbVWtnicNqXTPuI6W5J1hC87UQ&s",
+	},
+	{
+		id: uuid(),
+		name: "PC-Disktop",
+		imageURL: "https://pisces.bbystatic.com/image2/BestBuy_US/dam/sml_6538896-MMT-769072-0114-6da24619-80b4-4e08-b3bb-bb9deb2751f1.jpg;maxHeight=350;maxWidth=1000",
+	}
+
 ]
