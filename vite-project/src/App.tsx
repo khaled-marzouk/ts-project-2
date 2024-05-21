@@ -28,6 +28,7 @@ function App() {
 	const [isEditOpen, setIsEditOpen] = useState(false);
 	const [productToEdit, setProductToEdit] =
 		useState<Iproduct>(defaultProductValue);
+	const [productToEditIdx, setProductToEditIdx] = useState<number>(0);
 	const [selectedCategory, setSelectedCategory] = useState(Categories[0]);
 	const [products, setProducts] = useState<Iproduct[]>(productList);
 	const [tempColor, setTempColor] = useState<string[]>([]);
@@ -140,6 +141,14 @@ function App() {
 		// 	...prev,
 		// 	{ ...product, id: uuid(), colors: tempColor, category: selectedCategory },
 		// ]);
+
+		const updatedProducts = [...products];
+		updatedProducts[productToEditIdx] = {
+			...productToEdit,
+			colors: tempColor.concat(productToEdit.colors),
+		};
+		setProducts(updatedProducts);
+
 		setProductToEdit(defaultProductValue);
 		setTempColor([]);
 		closeEdit();
@@ -161,12 +170,14 @@ function App() {
 	// };
 	//####################################################################
 	// render
-	const renderProductList = products.map((product) => (
+	const renderProductList = products.map((product, idx) => (
 		<ProductCards
 			key={product.id}
 			product={product}
 			setProductToEdit={setProductToEdit}
 			openEdit={openEdit}
+			setProductToEditIdx={setProductToEditIdx}
+			idx={idx}
 		/>
 	));
 	//
@@ -219,6 +230,10 @@ function App() {
 			color={color}
 			onClick={() => {
 				if (tempColor.includes(color)) {
+					setTempColor((prev) => prev.filter((item) => item !== color));
+					return;
+				}
+				if (productToEdit.colors.includes(color)) {
 					setTempColor((prev) => prev.filter((item) => item !== color));
 					return;
 				}
@@ -284,6 +299,26 @@ function App() {
 					)}
 					{renderEditInputs("imageUrl", "product imageUrl", "imageURL")}
 					{renderEditInputs("price", "productPrice", "price")}
+					<SelectMenu
+						selected={productToEdit.category}
+						setSelected={(value) =>
+							setProductToEdit({ ...productToEdit, category: value })
+						}
+					/>
+					<div className="flex items-center space-x-1 flex-wrap ">
+						{renderColors}
+					</div>
+					<div className="flex items-center space-x-1 flex-wrap ">
+						{tempColor.concat(productToEdit.colors).map((color) => (
+							<span
+								className="p-1 mr-1 mb-1 text-xs rounded-md text-white"
+								style={{ backgroundColor: color }}
+								key={color}
+							>
+								{color}
+							</span>
+						))}
+					</div>
 					<div className="flex items-center space-x-3">
 						<Button className=" bg-gray-400 hover:bg-gray-500"> submit</Button>
 						<Button

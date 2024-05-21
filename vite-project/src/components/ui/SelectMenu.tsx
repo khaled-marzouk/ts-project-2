@@ -68,7 +68,7 @@ import { ICategory } from "../../assets/interfaces";
 // ];
 
 interface Iprops {
-	selected: ICategory;
+	selected: { name: string; imageURL: string };
 	setSelected: (category: ICategory) => void;
 }
 
@@ -156,7 +156,6 @@ export default function SelectMenu({ selected, setSelected }: Iprops) {
 							</Listbox.Options>
 						</Transition>
 					</div>
-          
 				</>
 			)}
 		</Listbox>

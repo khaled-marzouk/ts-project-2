@@ -8,9 +8,17 @@ interface Iprops {
 	product: Iproduct;
 	setProductToEdit: (product: Iproduct) => void;
 	openEdit: () => void;
+	setProductToEditIdx: (value: number) => void;
+	idx: number;
 }
 
-const ProductCards = ({ product, setProductToEdit, openEdit }: Iprops) => {
+const ProductCards = ({
+	product,
+	setProductToEdit,
+	openEdit,
+	setProductToEditIdx,
+	idx,
+}: Iprops) => {
 	const { title, description, imageURL, colors, price, category } = product;
 	// renders
 	const renderColors = colors.map((color) => (
@@ -20,6 +28,7 @@ const ProductCards = ({ product, setProductToEdit, openEdit }: Iprops) => {
 	const onEdit = () => {
 		setProductToEdit(product);
 		openEdit();
+		setProductToEditIdx(idx);
 	};
 
 	return (
