@@ -10,6 +10,7 @@ interface Iprops {
 	openEdit: () => void;
 	setProductToEditIdx: (value: number) => void;
 	idx: number;
+	openConfirmModal: () => void;
 }
 
 const ProductCards = ({
@@ -18,6 +19,7 @@ const ProductCards = ({
 	openEdit,
 	setProductToEditIdx,
 	idx,
+	openConfirmModal,
 }: Iprops) => {
 	const { title, description, imageURL, colors, price, category } = product;
 	// renders
@@ -29,6 +31,11 @@ const ProductCards = ({
 		setProductToEdit(product);
 		openEdit();
 		setProductToEditIdx(idx);
+	};
+	const OnRemove = () => {
+		setProductToEdit(product);
+
+		openConfirmModal();
 	};
 
 	return (
@@ -58,7 +65,7 @@ const ProductCards = ({
 				<Button width="w-full" onClick={onEdit} className=" bg-indigo-700 ">
 					Edit
 				</Button>
-				<Button width="w-full" className=" bg-red-700">
+				<Button width="w-full" className=" bg-red-700" onClick={OnRemove}>
 					Destroy
 				</Button>
 			</div>

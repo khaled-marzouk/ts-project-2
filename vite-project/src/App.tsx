@@ -25,6 +25,7 @@ function App() {
 		},
 	};
 	// state
+	const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 	const [isEditOpen, setIsEditOpen] = useState(false);
 	const [productToEdit, setProductToEdit] =
 		useState<Iproduct>(defaultProductValue);
@@ -56,6 +57,19 @@ function App() {
 	const closeEdit = () => {
 		setIsEditOpen(false);
 		setProduct(defaultProductValue);
+	};
+	const openConfirmModal = () => {
+		setIsConfirmOpen(true);
+	};
+	const closeConfirmModal = () => {
+		setIsConfirmOpen(false);
+	};
+	const RemoveProduct = () => {
+		const filtered = products.filter(
+			(product) => product.id !== productToEdit.id
+		);
+		setProducts(filtered)
+		closeConfirmModal()
 	};
 
 	const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -178,6 +192,7 @@ function App() {
 			openEdit={openEdit}
 			setProductToEditIdx={setProductToEditIdx}
 			idx={idx}
+			openConfirmModal={openConfirmModal}
 		/>
 	));
 	//
@@ -330,6 +345,29 @@ function App() {
 						</Button>
 					</div>
 				</form>
+			</Modal>
+			{/* delete modal */}
+			<Modal
+				isOpen={isConfirmOpen}
+				close={closeConfirmModal}
+				description="Deleting this product will remove it permanently from your inventory "
+				title="Are you sure you want to remove this product"
+			>
+				<div className="flex items-center space-x-3">
+					<Button
+						onClick={RemoveProduct}
+						className=" bg-[#c2344d] hover:bg-red-800"
+					>
+						{" "}
+						Yes, remove
+					</Button>
+					<Button
+						onClick={closeConfirmModal}
+						className="bg-[#f5f5fa] hover:bg-gray-300 text-gray-950"
+					>
+						cancel
+					</Button>
+				</div>
 			</Modal>
 		</main>
 	);

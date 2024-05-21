@@ -1,5 +1,6 @@
 import {
 	Dialog,
+	DialogDescription,
 	DialogPanel,
 	DialogTitle,
 	Transition,
@@ -12,9 +13,10 @@ interface Iprops {
 	close: () => void;
 	title?: string;
 	children: ReactNode;
+	description?: string;
 }
 
-const Modal = ({ isOpen, close, title, children }: Iprops) => {
+const Modal = ({ isOpen, close, title, children, description }: Iprops) => {
 	return (
 		<>
 			{/* Backdrop */}
@@ -55,6 +57,9 @@ const Modal = ({ isOpen, close, title, children }: Iprops) => {
 										>
 											{title}
 										</DialogTitle>
+									)}
+									{description && (
+										<DialogDescription as="p">{description}</DialogDescription>
 									)}
 									<div className="mt-4">{children}</div>
 								</DialogPanel>
